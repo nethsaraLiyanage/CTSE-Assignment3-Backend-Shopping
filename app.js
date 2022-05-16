@@ -23,7 +23,7 @@ app.use('/cart',cartR)
 
 
 mongoose.connect(
-    process.env.DB_CONNECTION,
+    MONGODB_URI,
     {useNewUrlParser: true , useUnifiedTopology:true},
     () =>{
         console.log("connected to the database")
