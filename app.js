@@ -10,7 +10,7 @@ const cartR = require('./routes/cartRoutes')
 
 
 //other consts
-const PORT = process.env.PORT || 8000;
+const PORT = 8070;
 const MONGODB_URI = process.env.DB_CONNECTION;
 
 //Middleware
