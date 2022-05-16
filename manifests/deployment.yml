@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: "myakscluster-fc8a"
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: "myakscluster-fc8a"
