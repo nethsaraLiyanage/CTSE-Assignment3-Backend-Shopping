@@ -6,10 +6,6 @@ const app = express()
 
 const router = express.Router({});
 
-router.get('/',async (req,res) =>{
-    res.status(200).send({message: "Route Called"})
-});
-
 //create a cart
 router.post('/create/:id',async (req,res) =>{
     const userId = req.params.id;
