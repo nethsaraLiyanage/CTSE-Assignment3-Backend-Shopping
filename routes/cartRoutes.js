@@ -40,22 +40,43 @@ router.get('/get-cart-items/:id',async (req,res) =>{
 
 router.put('/add-item/:id', async (req, res, _next) => {
 
-    // console.log(data);
+    const item = req.body._id
 
-    const updateCart = await Cart.findOneAndUpdate({user_id : req.body.userId}, {$push : {items : data._id}})
-
-    res.status(200).send(data)
+    const updateCart = await Cart.findOneAndUpdate(
+        {user_id : req.params.id}, 
+        {$push : {items : item}}
+    ).then((data) => {
+        res.status(200).json({message: "Successfully Added!", item: item})
+    })
 });
 
 router.put('/delete-item/:id', async (req, res, _next) => {
 
-    console.log(data);
+    const item = req.body._id
 
-    const updateCart = await Cart.findOneAndUpdate({user_id : req.body.userId}, {$pull : {items : data._id}})
-
-    res.status(200).send(data)
+    const updateCart = await Cart.findOneAndUpdate(
+        {user_id : req.params.id}, 
+        {$pull : {items : item}}
+    ).then((data) => {
+        res.status(200).json({message: "Successfully Deleted!", item: item})
+    })
 });
 
+router.put('/empty/:id', async (req, res, _next) => {
+
+    // const item = req.body._id
+
+    const updateCart = await Cart.findOneAndUpdate(
+        {user_id : req.params.id}, 
+        { $set : {items: [] }},
+        {multi:true}
+    ).then((data) => {
+        res.status(200).json({message: "Successfully Removed!"})
+    })
+});
+
+
+// db.collection.update({}, { $set : {'myArray': [] }} , {multi:true} )
 
 
 // export router with all routes included
