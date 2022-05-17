@@ -10,7 +10,7 @@ const cartR = require('./routes/cartRoutes')
 
 
 //other consts
-const PORT = 8070;
+const PORT = 8000;
 const MONGODB_URI = "mongodb+srv://uditha:1qaz2wsx@cluster0.ic3ct.mongodb.net/abc_shop?retryWrites=true&w=majority";
 
 //Middleware

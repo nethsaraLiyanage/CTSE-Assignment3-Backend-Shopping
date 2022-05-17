@@ -11,7 +11,7 @@ router.get('/',async (req,res) =>{
 });
 
 //create a cart
-router.post('/create/:id',async (req,res) =>{
+router.get('/create/:id',async (req,res) =>{
     const userId = req.params.id;
 
     const cart = await new Cart({
@@ -21,7 +21,6 @@ router.post('/create/:id',async (req,res) =>{
         res.status(200).send({message: "Cart Created"})
     })
 
-    
 });
 
 
@@ -39,24 +38,24 @@ router.get('/get-cart-items/:id',async (req,res) =>{
 
 });
 
-router.post('/cart-item/:id', async (req, res, _next) => {
-    console.log(req.body.isSelcted);
-    try {
-        await Cart.findOneAndUpdate({_id : req.params.id}, {isSelected : req.body.isSelcted})
-    } catch (error) {
-        
-    }
-});
+router.put('/add-item/:id', async (req, res, _next) => {
 
-router.post('/cart-item/:id', async (req, res, _next) => {
-    //console.log(req.body.additions);
-
-    console.log(data);
+    // console.log(data);
 
     const updateCart = await Cart.findOneAndUpdate({user_id : req.body.userId}, {$push : {items : data._id}})
 
     res.status(200).send(data)
 });
+
+router.put('/delete-item/:id', async (req, res, _next) => {
+
+    console.log(data);
+
+    const updateCart = await Cart.findOneAndUpdate({user_id : req.body.userId}, {$pull : {items : data._id}})
+
+    res.status(200).send(data)
+});
+
 
 
 // export router with all routes included
