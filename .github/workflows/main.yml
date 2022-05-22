@@ -23,7 +23,7 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
       - name: Build the docker image
-        run: docker build . --file DockerFile --tag nxtha/it19188546_ctse:${GITHUB_SHA}
+        run: docker build . --file DockerFile --tag nxtha/it19188546_ctse
         
       - name: Docker push
-        run: docker push nxtha/it19188546_ctse:${GITHUB_SHA}
+        run: docker push nxtha/it19188546_ctse
