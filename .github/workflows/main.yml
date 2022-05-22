@@ -1,8 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Docker Image CI
 
-# Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
@@ -35,7 +32,7 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Build the docker image
-        run: docker build . --file DockerFile --tag nethsaraLiyanage/node-test:$(date +%s)
+        run: docker build . --file DockerFile --tag nxtha/it19188546_ctse:${GITHUB_SHA}
         
       - name: Docker push
-        run: docker push ${{secrets.DOCKER_USER}}/CTSE-Assignment3-Backend-Shopping
+        run: docker push nxtha/it19188546_ctse:${GITHUB_SHA}
